@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Inventario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class='bx bx-package logo-icon'></i>
+                <h1>Inventario</h1>
+            </div>
+            <nav>
+                <a href="{{ url_for('ver_inventario') }}" class="{{ 'active' if request.endpoint == 'ver_inventario' else '' }}">
+                    <i class='bx bx-list-ul'></i> Inventario
+                </a>
+                <a href="{{ url_for('mover_producto') }}" class="{{ 'active' if request.endpoint == 'mover_producto' else '' }}">
+                    <i class='bx bx-transfer'></i> Mover Productos
+                </a>
+                <a href="{{ url_for('cargar_excel') }}" class="{{ 'active' if request.endpoint == 'cargar_excel' else '' }}">
+                    <i class='bx bx-upload'></i> Cargar Excel
+                </a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {% if category == 'success' %}
+                            <i class='bx bx-check-circle'></i>
+                        {% else %}
+                            <i class='bx bx-error-circle'></i>
+                        {% endif %}
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+
+    <script>
+        // For file input display
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.querySelector('.file-input');
+            const fileNameDisplay = document.querySelector('.file-name');
+            
+            if (fileInput && fileNameDisplay) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files.length > 0) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                    } else {
+                        fileNameDisplay.textContent = 'Ningún archivo seleccionado';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

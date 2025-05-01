@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2><i class='bx bx-transfer'></i> Mover Productos</h2>
+    </div>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="codigo_barras">Código Barras:</label>
+            <select id="codigo_barras" name="codigo_barras" required>
+                {% for producto in productos %}
+                <option value="{{ producto[0] }}">{{ producto[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" step="0.01" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="origen">Origen:</label>
+            <select id="origen" name="origen">
+                <option value="almacen">Almacén</option>
+                <option value="local">Local</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="destino">Destino:</label>
+            <select id="destino" name="destino">
+                <option value="local">Local</option>
+                <option value="almacen">Almacén</option>
+            </select>
+        </div>
+        
+        <button type="submit">
+            <i class='bx bx-transfer-alt'></i> Mover Producto
+        </button>
+    </form>
+</div>
+{% endblock %}
+

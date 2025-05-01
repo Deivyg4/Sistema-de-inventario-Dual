@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2><i class='bx bx-upload'></i> Cargar Archivo Excel</h2>
+    </div>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="file-input-container">
+                <label class="file-input-label" for="archivo">
+                    <i class='bx bx-file'></i> Seleccionar archivo Excel
+                </label>
+                <input type="file" id="archivo" name="archivo" accept=".xlsx" required class="file-input">
+                <div class="file-name">Ningún archivo seleccionado</div>
+            </div>
+        </div>
+        
+        <button type="submit">
+            <i class='bx bx-upload'></i> Subir Excel
+        </button>
+    </form>
+</div>
+{% endblock %}
+
