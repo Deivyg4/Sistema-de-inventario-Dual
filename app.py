@@ -3,7 +3,7 @@ import pandas as pd
 from database import get_connection, return_connection, init_db
 
 app = Flask(__name__)
-app.secret_key = 'b646347c3cf860cbfb1e6de5b11072236dd23daadcded84c'
+app.secret_key = 'Tu_llave_secreta'
 
 # Inicializar BD
 init_db()
